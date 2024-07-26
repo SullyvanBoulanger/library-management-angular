@@ -1,8 +1,13 @@
 import { Component } from '@angular/core';
 import { BookService } from '../book.service';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-book-form',
+  standalone: true,
+  imports: [
+    FormsModule
+  ],
   templateUrl: './book-form.component.html',
   styleUrl: './book-form.component.scss',
 })

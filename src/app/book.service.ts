@@ -24,7 +24,9 @@ export class BookService {
     publishedYear: number,
     synopsis: string
   ) {
-    this.#books.push({ id: this.#id++, name, author, publishedYear, synopsis });
+    const book = { id: this.#id++, name, author, publishedYear, synopsis };
+    console.log(book);
+    this.#books.push(book);
   }
 
   deleteBook(id: number) {
