@@ -1,0 +1,16 @@
+<h2>Ajouter un livre</h2>
+<form (submit)="addBook()">
+    <label for="name">Titre :</label>
+    <input type="text" id="name" [(ngModel)]="name" name="name" required>
+    <br>
+    <label for="author">Auteur :</label>
+    <input type="text" id="author" [(ngModel)]="author" name="author" required>
+    <br>
+    <label for="publishedYear">Ann"e de publication :</label>
+    <input type="text" id="publishedYear" [(ngModel)]="publishedYear" name="publishedYear" required>
+    <br>
+    <label for="synopsis">Synopsis :</label>
+    <input type="text" id="synopsis" [(ngModel)]="synopsis" name="synopsis" required>
+    <br>
+    <button type="submit">Ajouter</button>
+</form>
