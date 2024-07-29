@@ -1,21 +1,19 @@
 import { Injectable } from '@angular/core';
 import { Book } from './book.model';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class BookService {
-  #books: Book[] = [];
-  #id = 1;
+  private booksSubject = new BehaviorSubject<Book[]>([]);
+  private books: Book[] = [];
+  private id = 1;
 
   constructor() {}
 
-  get books() {
-    return this.#books;
-  }
-
-  set books(books: Book[]) {
-    this.#books = books;
+  getBooks(): Observable<Book[]> {
+    return this.booksSubject.asObservable();
   }
 
   addBook(
@@ -24,16 +22,18 @@ export class BookService {
     publishedYear: number,
     synopsis: string
   ) {
-    const book = { id: this.#id++, name, author, publishedYear, synopsis };
+    const book = { id: this.id++, name, author, publishedYear, synopsis };
     console.log(book);
-    this.#books.push(book);
+    this.books.push(book);
+    this.booksSubject.next(this.books);
   }
 
   deleteBook(id: number) {
-    this.#books = this.#books.filter((book) => book.id != id);
+    this.books = this.books.filter((book) => book.id != id);
+    this.booksSubject.next(this.books);
   }
 
   getBook(id: number): Book {
-    return this.#books.filter((book) => book.id != id)[0];
+    return this.books.filter((book) => book.id != id)[0];
   }
 }

@@ -1,9 +1,8 @@
 <p>Liste des livres</p>
 <ul>
-  @for (book of books; track book.id) {
+  @for (book of books | async; track $index) {
   <li>
-    {{ book.name }} ({{ book.author }} - {{ book.publishedYear }})
-    <button (click)="deleteBook(book.id)">Supprimer</button>
+    <app-book-item [book]="book" />
   </li>
   }
 </ul>
